@@ -21,3 +21,9 @@ def generate_random_string(length=5):
     """Generates a random string of a given length."""
     letters = string.ascii_letters
     return ''.join(random.choice(letters) for _ in range(length))
+
+
+def test_count_words():
+    assert count_words("hello world") == 2
+    assert count_words("this is a test") == 4
+    assert count_words("") == 0

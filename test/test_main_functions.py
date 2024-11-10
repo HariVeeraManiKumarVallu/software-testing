@@ -8,11 +8,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 
 from main_functions import count_words, count_occurrences, merge_strings, generate_random_string
 
-def test_count_words():
-    assert count_words("hello world") == 2
-    assert count_words("this is a test") == 4
-    assert count_words("") == 0
-
 def test_count_occurrences():
     assert count_occurrences("hello world hello", "hello") == 2
     assert count_occurrences("this is a test", "test") == 1
