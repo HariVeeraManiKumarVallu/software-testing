@@ -1,0 +1,37 @@
+name: Continuous Integration (CI)
+
+on:
+  push:
+    branches:
+      - main          # Trigger on push to 'main' branch
+      - main_functions.py
+      - tests/test_main_functions.py
+  pull_request:
+    branches:
+      - main          # Trigger on pull requests to 'main' branch
+      - main_functions.py
+      - tests/test_main_functions.py
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use GitHub's hosted Ubuntu runner
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Check out the repository
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'  # Specify the Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip  # Upgrade pip to the latest version
+          python -m pip install pytest  # Install pytest using python -m pip
+
+      - name: Run tests with pytest
+        run: |
+          python -m pytest tests/ --maxfail=1 --disable-warnings -v  # Run all tests in the 'tests' directory
+        env:
+          PYTHONPATH: ${{ github.workspace }}
