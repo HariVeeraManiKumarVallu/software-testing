@@ -34,8 +34,15 @@ jobs:
       - name: List directory contents
         run: ls -R
 
-      - name: Run tests with pytest
+      - name: Find and run tests
         run: |
-          python -m pytest tests/test_main_functions.py --maxfail=1 --disable-warnings -v
+          if [ -f test_main_functions.py ]; then
+            python -m pytest test_main_functions.py --maxfail=1 --disable-warnings -v
+          elif [ -f tests/test_main_functions.py ]; then
+            python -m pytest tests/test_main_functions.py --maxfail=1 --disable-warnings -v
+          else
+            echo "Error: test_main_functions.py not found in root or tests directory"
+            exit 1
+          fi
         env:
-          PYTHONPATH: ${{ github.workspace }}/src
+          PYTHONPATH: ${{ github.workspace }}:${{ github.workspace }}/src
