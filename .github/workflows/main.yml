@@ -35,6 +35,10 @@ jobs:
 
       - name: Check if tests directory exists   # Check specifically for tests folder
         run: |
+          echo "Current working directory:"
+          pwd                                    # Print the current working directory
+          echo "Listing contents:"
+          ls -la                                 # List all files and directories in the current directory
           if [ ! -d tests ]; then echo "Directory 'tests' does not exist."; exit 1; fi
 
       - name: Run tests with pytest
