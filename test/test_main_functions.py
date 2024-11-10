@@ -34,7 +34,3 @@ def test_integration():
     word_occurrences = count_occurrences(text, "hello")
     assert word_count == 3
     assert word_occurrences == 2
-
-if __name__ == "__main__":
-    import pytest
-    pytest.main([__file__])
