@@ -15,7 +15,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest  # Use GitHub's hosted Ubuntu runner
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3  # Check out the repository
@@ -30,8 +30,11 @@ jobs:
           python -m pip install --upgrade pip  # Upgrade pip to the latest version
           python -m pip install pytest  # Install pytest using python -m pip
 
+      - name: List directory contents  # Add this step for debugging
+        run: ls -R
+
       - name: Run tests with pytest
         run: |
           python -m pytest tests/ --maxfail=1 --disable-warnings -v  # Run all tests in the 'tests' directory
         env:
-          PYTHONPATH: ${{ github.workspace }}
+          PYTHONPATH: ${{ github.workspace }}/src:${{ github.workspace }}
