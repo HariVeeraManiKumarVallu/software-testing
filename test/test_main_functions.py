@@ -1,10 +1,10 @@
-# test/test_main_functions.py
+# test/test_main_functions.py (or tests/test_main_functions.py)
 
 import sys
 import os
 
-# Add the project root directory to the Python path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# Add the src directory to the Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
 from main_functions import count_words, count_occurrences, merge_strings, generate_random_string
 
@@ -34,3 +34,7 @@ def test_integration():
     word_occurrences = count_occurrences(text, "hello")
     assert word_count == 3
     assert word_occurrences == 2
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])
