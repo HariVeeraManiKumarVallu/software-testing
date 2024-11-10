@@ -31,7 +31,7 @@ jobs:
           python -m pip install pytest  # Install pytest using python -m pip
 
       - name: List directory contents  # Add this step for debugging
-        run: ls -R
+        run: ls -R  # List all files and directories recursively
 
       - name: Run tests with pytest
         run: |
